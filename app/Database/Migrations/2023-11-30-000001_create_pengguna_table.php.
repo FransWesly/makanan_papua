@@ -1,0 +1,52 @@
+<?php
+
+namespace App\Database\Migrations;
+
+use CodeIgniter\Database\Migration;
+
+class CreatePenggunaTable extends Migration
+{
+    public function up()
+    {
+        $this->forge->addField([
+            'pengguna_id' => [
+                'type' => 'INT',
+                'constraint' => 11,
+                'unsigned' => true,
+                'auto_increment' => true,
+            ],
+            'username' => [
+                'type' => 'VARCHAR',
+                'constraint' => 50,
+                'null' => false,
+                'unique' => true,
+            ],
+            'password' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => false,
+            ],
+            'peran' => [
+                'type' => 'ENUM',
+                'constraint' => ['admin', 'customer'],
+                'null' => false,
+            ],
+        ]);
+
+        // Menambahkan primary key
+        $this->forge->addPrimaryKey('pengguna_id');
+
+        // Membuat tabel dengan charset dan collation
+        $this->forge->createTable('pengguna', true, [
+            'ENGINE' => 'InnoDB',
+            'CHARSET' => 'utf8mb4',
+            'COLLATE' => 'utf8mb4_general_ci',
+        ]);
+    }
+
+    public function down()
+    {
+        // Menghapus tabel jika migrasi dibatalkan
+        $this->forge->dropTable('pengguna');
+    }
+}

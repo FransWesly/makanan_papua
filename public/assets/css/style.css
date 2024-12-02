@@ -1,0 +1,50 @@
+/* header */
+.header {
+  position: relative;
+  background: no-repeat center center/cover;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.header-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* kontak */
+.contact-section {
+  padding: 50px 0;
+}
+.contact-info {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+}
+.contact-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* tentang */
+.about-content {
+  padding: 50px 20px;
+}

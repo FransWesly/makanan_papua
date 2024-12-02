@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Database\Migrations;
+
+use CodeIgniter\Database\Migration;
+
+class CreateDetailPesananTable extends Migration
+{
+    public function up()
+    {
+        $this->forge->addField([
+            'detail_pesanan_id' => [
+                'type' => 'INT',
+                'unsigned' => true,
+                'auto_increment' => true,
+            ],
+            'pesanan_id' => [
+                'type' => 'INT',
+                'unsigned' => true,
+                'null' => true,
+            ],
+            'produk_id' => [
+                'type' => 'INT',
+                'unsigned' => true,
+                'null' => true,
+            ],
+            'jumlah' => [
+                'type' => 'INT',
+            ],
+            'subtotal' => [
+                'type' => 'DECIMAL',
+                'constraint' => '10,2',
+            ],
+        ]);
+        $this->forge->addPrimaryKey('detail_pesanan_id');
+        $this->forge->addForeignKey('pesanan_id', 'pesanan', 'pesanan_id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('produk_id', 'produk', 'produk_id', 'CASCADE', 'CASCADE');
+        $this->forge->createTable('detail_pesanan');
+    }
+
+    public function down()
+    {
+        $this->forge->dropTable('detail_pesanan');
+    }
+}

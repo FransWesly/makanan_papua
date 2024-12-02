@@ -1,0 +1,46 @@
+<?php
+
+namespace App\Database\Migrations;
+
+use CodeIgniter\Database\Migration;
+
+class CreateProdukTable extends Migration
+{
+    public function up()
+    {
+        $this->forge->addField([
+            'produk_id' => [
+                'type' => 'INT',
+                'unsigned' => true,
+                'auto_increment' => true,
+            ],
+            'nama' => [
+                'type' => 'VARCHAR',
+                'constraint' => '100',
+            ],
+            'deskripsi' => [
+                'type' => 'TEXT',
+                'null' => true,
+            ],
+            'harga' => [
+                'type' => 'DECIMAL',
+                'constraint' => '10,2',
+            ],
+            'gambar' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255',
+                'null' => true,
+            ],
+            'stok' => [
+                'type' => 'INT',
+            ],
+        ]);
+        $this->forge->addPrimaryKey('produk_id');
+        $this->forge->createTable('produk');
+    }
+
+    public function down()
+    {
+        $this->forge->dropTable('produk');
+    }
+}
